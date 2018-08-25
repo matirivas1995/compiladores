@@ -26,7 +26,7 @@ public class Main {
         System.out.println();
         TablaDeTransicion tabla = afn.getTablaTransicion();
 
-        tabla.imprimirTabla();
+        tabla.imprimirTablaAFN();
 
         //Conversion AFN a AFD (Subconjuntos)
         System.out.println();
@@ -37,7 +37,7 @@ public class Main {
 
         //Impresion tabla de transicion del AFD
         TablaDeTransicion tabla2 = afd.getTablaTransicion();
-        tabla2.imprimirTabla();
+        tabla2.imprimirTablaAFD();
 
         //Conversion AFD a AFD Minimizado (Minimizacion)   
         AFDMin afdMin = Minimizacion.minimizarAFD(afd);
