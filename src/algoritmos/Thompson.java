@@ -80,7 +80,7 @@ public class Thompson {
     }
 
     //Aplica el operador de concatenacion a dos AFNs dados.
-    public static AFN concatenacion(AFN afn1, AFN afn2) {
+    public static AFN concatenacion(AFN afn2, AFN afn1) {
         AFN afn = new AFN();
 
         //Se agregan los estados de afn1
