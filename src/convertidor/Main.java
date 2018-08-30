@@ -15,9 +15,11 @@ public class Main {
         ArrayList listAfn;
         ArrayList listAfd;
         ArrayList listExpReg;
+        ArrayList listaSimbolos;
 
         listAfn = new ArrayList<AFN>();
         listAfd = new ArrayList<AFD>();
+        listaSimbolos = new ArrayList<TablaDeSimbolos>();
         listExpReg = new ArrayList<String>();
         Scanner scan = new Scanner(System.in);
         String entrada=null;
@@ -76,6 +78,9 @@ public class Main {
             System.out.println("Ingrese cadena a validar:");
             valor = scan.nextLine();
             ResultadoValidacion resultado = null;
+            TablaDeSimbolos simbolo = null;
+            TablaDeSimbolos imprimible = null;
+
 
             for (int i=0;i<listAfd.size();i++) {
 
@@ -90,11 +95,21 @@ public class Main {
 
                 if (resultado.esValido()){
                     System.out.println("La cadena es aceptada y pertenece a la expresión regular : " + listExpReg.get(i));
+                    simbolo.setToken(listExpReg.get(i).toString());
+                    simbolo.setCadena(valor);
+                    simbolo.setIdentificador(Integer.toString(i));
+                    listaSimbolos.add(simbolo);
                     break;
                 }
 
             }
-            System.out.println("Enter para continuar. 'exit' para salir.");
+            System.out.println("La tabla de simbolos es la siguiente\n\n");
+            System.out.println("Token\tCadena\tIdentificador\n");
+            for(int j=0 ; j< listaSimbolos.size() ; j++){
+                imprimible = (TablaDeSimbolos) listaSimbolos.get(j);
+                System.out.println(imprimible.getToken()+"\t"+imprimible.getCadena()+"\t"+imprimible.getIdentificador());
+            }
+            System.out.println("\n\nEnter para continuar. 'exit' para salir.");
             valor = scan.nextLine();
         }
 
