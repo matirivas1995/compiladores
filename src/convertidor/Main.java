@@ -77,21 +77,21 @@ public class Main {
             // Verificion de cadena con Automatas
             System.out.println("Ingrese cadena a validar:");
             valor = scan.nextLine();
+
+            String[] parts = valor.split(" ");
+
             ResultadoValidacion resultado = null;
             TablaDeSimbolos simbolo = null;
             TablaDeSimbolos imprimible = null;
 
+            for (String part: parts){
 
-            for (int i=0;i<listAfd.size();i++) {
+                for (int i=0;i<listAfd.size();i++) {
 
-                // Verficiacion con el AFN
-                resultado = Validacion.validarAFN((AFN) listAfn.get(i), valor);
+                    // Verficiacion con el AFN
+                    resultado = Validacion.validarAFN((AFN) listAfn.get(i), part);
 
-                Validacion.imprimirValidacion(resultado, "AFN");
-
-                // Verficiacion con el AFD
-                resultado = Validacion.validarAFD((AFD) listAfd.get(i), valor);
-                Validacion.imprimirValidacion(resultado, "AFD");
+                    Validacion.imprimirValidacion(resultado, "AFN");
 
                 if (resultado.esValido()){
                     System.out.println("La cadena es aceptada y pertenece a la expresión regular : " + listExpReg.get(i));
@@ -112,8 +112,6 @@ public class Main {
             System.out.println("\n\nEnter para continuar. 'exit' para salir.");
             valor = scan.nextLine();
         }
-
-
 
 
     }
