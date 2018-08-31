@@ -2,14 +2,16 @@ package representacion;
 
 public class TablaDeSimbolos {
     String token;
+    String expr;
     String cadena;
     String identificador;
 
     public TablaDeSimbolos() {
     }
 
-    public TablaDeSimbolos(String token, String cadena, String identificador) {
+    public TablaDeSimbolos(String token, String expr, String cadena, String identificador) {
         this.token = token;
+        this.expr = expr;
         this.cadena = cadena;
         this.identificador = identificador;
     }
@@ -38,4 +40,11 @@ public class TablaDeSimbolos {
         this.identificador = identificador;
     }
 
+    public String getExpr() {
+        return expr;
+    }
+
+    public void setExpr(String expr) {
+        this.expr = expr;
+    }
 }

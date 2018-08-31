@@ -42,12 +42,12 @@ public class TablaDeTransicion {
 
     public void imprimirTablaAFN() {
         for (int i = 0; i < getCantidadColumnas(); i++) {
-            System.out.printf("%s\t", getNombreColumna(i));
+            System.out.printf("|%10s\t|", getNombreColumna(i));
         }
         System.out.println();
         for (int i = 0; i < getCantidadFilas(); i++) {
             for (int j = 0; j < getCantidadColumnas(); j++) {
-                System.out.printf("%s\t", getvalorEn(i, j));
+                System.out.printf("|%10s\t|", getvalorEn(i, j));
             }
             System.out.println();
         }
@@ -56,13 +56,13 @@ public class TablaDeTransicion {
     
     public void imprimirTablaAFD() {
         for (int i = 0; i < getCantidadColumnas(); i++) {
-            System.out.printf("%s\t\t", getNombreColumna(i));
+            System.out.printf("|%15s\t\t|", getNombreColumna(i));
             
         }
         System.out.println();
         for (int i = 0; i < getCantidadFilas(); i++) {
             for (int j = 0; j < getCantidadColumnas(); j++) {
-                System.out.printf("%s\t\t", getvalorEn(i, j));
+                System.out.printf("|%15s\t\t|", getvalorEn(i, j));
             }
             System.out.println();
         }

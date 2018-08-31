@@ -350,8 +350,6 @@ public class ConvertidorER {
         Stack<Character> stack = new Stack<>();
 
         String formattedRegEx = formatRegEx(regex);
-        System.out.println("formated regex \n");
-        System.out.println(formattedRegEx);
         for (Character c : formattedRegEx.toCharArray()) {
             switch (c) {
                 case '(':
@@ -391,8 +389,6 @@ public class ConvertidorER {
 
         while (stack.size() > 0)
             postfix += stack.pop();
-        System.out.println("pofijo\n");
-        System.out.println(postfix);
         return postfix;
     }
 
