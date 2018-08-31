@@ -8,6 +8,12 @@ public class TablaDeSimbolos {
     public TablaDeSimbolos() {
     }
 
+    public TablaDeSimbolos(String token, String cadena, String identificador) {
+        this.token = token;
+        this.cadena = cadena;
+        this.identificador = identificador;
+    }
+
     public String getToken() {
         return token;
     }
@@ -31,4 +37,5 @@ public class TablaDeSimbolos {
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
+
 }

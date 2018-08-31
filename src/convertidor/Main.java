@@ -4,10 +4,8 @@ import representacion.*;
 import validaciones.*;
 import algoritmos.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import javax.swing.plaf.synth.SynthTextAreaUI;
+import java.util.*;
 
 public class Main {
 
@@ -81,33 +79,42 @@ public class Main {
             String[] parts = valor.split(" ");
 
             ResultadoValidacion resultado = null;
-            TablaDeSimbolos simbolo = null;
-            TablaDeSimbolos imprimible = null;
+            String expre = null;
+            int contador = 0;
 
-            for (String part: parts){
+            for (String part: parts) {
 
-                for (int i=0;i<listAfd.size();i++) {
+                for (int i = 0; i < listAfd.size(); i++) {
 
                     // Verficiacion con el AFN
                     resultado = Validacion.validarAFN((AFN) listAfn.get(i), part);
 
                     Validacion.imprimirValidacion(resultado, "AFN");
 
-                if (resultado.esValido()){
-                    System.out.println("La cadena es aceptada y pertenece a la expresión regular : " + listExpReg.get(i));
-                    simbolo.setToken(listExpReg.get(i).toString());
-                    simbolo.setCadena(valor);
-                    simbolo.setIdentificador(Integer.toString(i));
-                    listaSimbolos.add(simbolo);
-                    break;
-                }
+                    // Verficiacion con el AFD
+                    resultado = Validacion.validarAFD((AFD) listAfd.get(i), part);
+                    Validacion.imprimirValidacion(resultado, "AFD");
 
+                    if (resultado.esValido()) {
+                        System.out.println("La cadena es aceptada y pertenece a la expresión regular : " + listExpReg.get(i));
+                        TablaDeSimbolos simbolo = new TablaDeSimbolos((String)listExpReg.get(i),part,Integer.toString(contador));
+                        System.out.println("Se agrega --> " + simbolo.getCadena() + "  con id ---> " + simbolo.getIdentificador());
+                        listaSimbolos.add(simbolo);
+                        contador++;
+                        break;
+                    }
+
+                }
             }
-            System.out.println("La tabla de simbolos es la siguiente\n\n");
-            System.out.println("Token\tCadena\tIdentificador\n");
-            for(int j=0 ; j< listaSimbolos.size() ; j++){
-                imprimible = (TablaDeSimbolos) listaSimbolos.get(j);
-                System.out.println(imprimible.getToken()+"\t"+imprimible.getCadena()+"\t"+imprimible.getIdentificador());
+
+            Iterator it = listaSimbolos.iterator();
+
+            System.out.println("\nLa tabla de simbolos es la siguiente\n\n");
+            String format = "|%1$-10s|%2$-10s|%3$-20s|\n";
+            System.out.format(format,"Token","Cadena","Identificador");
+            while(it.hasNext()) {
+                TablaDeSimbolos sim = (TablaDeSimbolos) it.next();
+                System.out.format(format,sim.getToken(),sim.getCadena(),sim.getIdentificador());
             }
             System.out.println("\n\nEnter para continuar. 'exit' para salir.");
             valor = scan.nextLine();
